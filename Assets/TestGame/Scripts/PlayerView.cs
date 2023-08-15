@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
 using System;
@@ -20,18 +18,29 @@ public class PlayerView : MonoBehaviour
 
     [SerializeField]
     private float _speed = 1f;
-        
-    public void Initialization()
+
+    [SerializeField]
+    private Transform _gunTransform;
+
+    [SerializeField]
+    private GameObject _explosion;
+
+    [Header("Audio")]
+    [SerializeField]
+    private AudioSource _audioSource;
+    [SerializeField]
+    private SoundsData _sounds;
+
+    public void Initialize()
     {
-        ShowAnimation(Run); 
+        ShowRun();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.GetComponent<Enemies>())
         {
-            ShowAnimation(Loose);
-            OnLoose?.Invoke();
+            ShowLoose();
         }
             
     }
@@ -40,16 +49,30 @@ public class PlayerView : MonoBehaviour
         _player.transform.position += (new Vector3(1, 0, 0) * _speed * Time.deltaTime);
     }
 
-    public void ShowAnimation(String animation)
+    private void ShowRun()
     {
-        _animation.AnimationName = animation;
-
+        _animation.AnimationState.SetAnimation(0, Run, true);
+        
+    }
+    public void ShowLoose()
+    {
+        _animation.AnimationState.SetAnimation(0, Loose, false);
+        PlayClip(_sounds.Loose);
+        OnLoose?.Invoke();
     }
 
+    public void ShowShoot()
+    {
+        _animation.AnimationState.SetAnimation(1, Shoot, false);
+        PlayClip(_sounds.Shoot);
+        Instantiate(_explosion, _gunTransform);
+        Destroy(_explosion, 2);
+    }
 
- 
-
-
-
+    private void PlayClip(AudioClip clip)
+    {
+        _audioSource.clip = clip;
+        _audioSource.Play();
+    }
 
 }

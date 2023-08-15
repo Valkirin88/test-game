@@ -21,7 +21,12 @@ public class EntryPoint : MonoBehaviour
 
     private void Initialization()
     {
-        _playerView.Initialization();
+        _playerView.Initialize();
+    }
+
+    private void OnDestroy()
+    {
+        _playerController.Dispose();
     }
 
 }
