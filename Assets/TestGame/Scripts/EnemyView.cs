@@ -23,13 +23,12 @@ public class EnemyView : MonoBehaviour
     public void Dead()
     {
         StartCoroutine(Hit());
-
     }
 
     private IEnumerator Hit()
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.6f);
         Instantiate(_deathObject, _hitTransform);
-        Destroy(gameObject, 0.5f);
+        Destroy(gameObject, 0.3f);
     }
 }

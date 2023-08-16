@@ -1,6 +1,6 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Canvas : MonoBehaviour
 {
@@ -13,17 +13,27 @@ public class Canvas : MonoBehaviour
     [SerializeField]
     private Button _restartButton;
 
+    [SerializeField]
+    private TMP_Text _text;
+
     private PlayerView _playerView;
     public void Initialize(PlayerView playerView)
     {
         _playerView = playerView;
         _playerView.OnFinish += ShowFin;
-        _restartButton.onClick.AddListener(Restart);
+        _playerView.OnLoose += ShowGameOver;
+       // _restartButton.onClick.AddListener(Restart);
+        _text.text = "Game Over";
     }
 
     private void ShowFin()
     {
         _finScreen.SetActive(true);
+    }
+
+    private void ShowGameOver() 
+    {
+        _gameOverScreen.SetActive(true);
     }
     private void Restart()
     {
@@ -33,6 +43,7 @@ public class Canvas : MonoBehaviour
     private void OnDestroy()
     {
         _playerView.OnFinish -= ShowFin;
+        _playerView.OnLoose -= ShowGameOver;
         _restartButton.onClick.RemoveListener(Restart);
     }
 }
