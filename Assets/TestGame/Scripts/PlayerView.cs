@@ -38,7 +38,7 @@ public class PlayerView : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.GetComponent<Enemies>())
+        if (collision.GetComponent<EnemyView>())
         {
             ShowLoose();
         }

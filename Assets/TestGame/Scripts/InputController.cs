@@ -12,7 +12,7 @@ public class InputController
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
-                if (hit.collider.gameObject.GetComponent<Enemies>())
+                if (hit.collider.gameObject.GetComponent<EnemyView>())
                     OnShoot?.Invoke();
         }
     }
