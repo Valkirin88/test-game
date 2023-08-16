@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class EntryPoint : MonoBehaviour
@@ -7,6 +6,8 @@ public class EntryPoint : MonoBehaviour
     private PlayerView _playerView;
     [SerializeField]
     private EnemyView[] _enemyViews;
+    [SerializeField]
+    private Canvas _canvas;
 
     private PlayerController _playerController;
     private InputController _inputController;
@@ -17,7 +18,6 @@ public class EntryPoint : MonoBehaviour
         _inputController = new InputController();
         _playerController = new PlayerController(_playerView, _inputController);
         _enemyControllers = new EnemyController[_enemyViews.Length];
-        InstantiateEnemies();
         Initialization();
     }
 
@@ -29,16 +29,17 @@ public class EntryPoint : MonoBehaviour
     private void Initialization()
     {
         _playerView.Initialize();
+        InitializeEnemies();
+        _canvas.Initialize(_playerView);
     }
 
     private void OnDestroy()
     {
         _playerController.Dispose();
         DisposeEnemies();
-        
     }
 
-    private void InstantiateEnemies()
+    private void InitializeEnemies()
     {
         for (int i = 0; i < _enemyViews.Length; i++) 
         {

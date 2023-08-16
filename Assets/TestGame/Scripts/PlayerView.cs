@@ -9,6 +9,7 @@ public class PlayerView : MonoBehaviour
     private const string Shoot = "shoot";
 
     public Action OnLoose;
+    public Action OnFinish;
 
     [SerializeField]
     private GameObject _player;
@@ -42,6 +43,10 @@ public class PlayerView : MonoBehaviour
         {
             ShowLoose();
         }
+        if (collision.GetComponent<Finish>())
+        {
+            ShowFinish();
+        }
             
     }
     private void Update()
@@ -73,6 +78,11 @@ public class PlayerView : MonoBehaviour
     {
         _audioSource.clip = clip;
         _audioSource.Play();
+    }
+
+    private void ShowFinish()
+    {
+        OnFinish?.Invoke();
     }
 
 }
