@@ -33,22 +33,27 @@ public class PlayerView : MonoBehaviour
     [SerializeField]
     private SoundsData _sounds;
 
+    private bool _isAlive;
+
     public void Initialize()
     {
+        _isAlive = true;
         Run();
     }
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.GetComponent<EnemyView>())
+        if (_isAlive)
         {
-            Loose();
+            if (collision.GetComponent<EnemyView>())
+            {
+                Loose();
+            }
+            if (collision.GetComponent<Finish>())
+            {
+                Finish();
+            }
         }
-        if (collision.GetComponent<Finish>())
-        {
-            Finish();
-        }
-            
     }
     private void Update()
     {
@@ -63,6 +68,7 @@ public class PlayerView : MonoBehaviour
     }
     public void Loose()
     {
+        _isAlive = false;
         _animation.AnimationState.SetAnimation(0, LooseAnimationName, false);
         PlayClip(_sounds.Loose);
         OnLoose?.Invoke();
