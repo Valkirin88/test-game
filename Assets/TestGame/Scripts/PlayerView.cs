@@ -69,6 +69,7 @@ public class PlayerView : MonoBehaviour
     public void ShowShoot()
     {
         _animation.AnimationState.SetAnimation(1, Shoot, false);
+        _animation.AnimationState.AddAnimation(1, Run, true, 1);
         PlayClip(_sounds.Shoot);
         Instantiate(_explosion, _gunTransform);
         Destroy(_explosion, 2);

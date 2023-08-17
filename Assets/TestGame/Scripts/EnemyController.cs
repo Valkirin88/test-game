@@ -8,7 +8,7 @@ public class EnemyController
     {
         _view = view;
         _inputController = inputController;
-        _inputController.OnShoot += _view.Dead;
+       // _inputController.OnShoot += _view.Dead;
     }
 
     public void Dispose()

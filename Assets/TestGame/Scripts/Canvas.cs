@@ -14,16 +14,17 @@ public class Canvas : MonoBehaviour
     private Button _restartButton;
 
     [SerializeField]
-    private TMP_Text _text;
+    private TextMeshProUGUI _text;
 
     private PlayerView _playerView;
+
     public void Initialize(PlayerView playerView)
     {
         _playerView = playerView;
         _playerView.OnFinish += ShowFin;
         _playerView.OnLoose += ShowGameOver;
-       // _restartButton.onClick.AddListener(Restart);
-        _text.text = "Game Over";
+        // _restartButton.onClick.AddListener(Restart);
+        //_text.text = "Game Over";
     }
 
     private void ShowFin()
@@ -38,6 +39,10 @@ public class Canvas : MonoBehaviour
     private void Restart()
     {
 
+    }
+    private void Update()
+    {
+        
     }
 
     private void OnDestroy()
