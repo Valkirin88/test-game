@@ -12,6 +12,7 @@ public class EnemyView : MonoBehaviour
     private SoundsData _sound;
     [SerializeField]
     private GameObject _deathObject;
+
     [SerializeField]
     private Transform _hitTransform;
 
@@ -20,8 +21,10 @@ public class EnemyView : MonoBehaviour
         transform.position += (new Vector3(-1,0,0) * Time.deltaTime * _speed);
     }
 
-    public void Dead()
+    public void Dead(Vector3 hitPosition)
     {
+        Debug.Log(hitPosition);
+        _hitTransform.position = hitPosition;
         StartCoroutine(Hit());
     }
 

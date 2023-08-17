@@ -1,6 +1,7 @@
 using UnityEngine;
 using Spine.Unity;
 using System;
+using DG.Tweening;
 
 public class PlayerView : MonoBehaviour
 {
@@ -73,6 +74,12 @@ public class PlayerView : MonoBehaviour
         PlayClip(_sounds.Shoot);
         Instantiate(_explosion, _gunTransform);
         Destroy(_explosion, 2);
+        ShowRecoil();
+    }
+
+    private void ShowRecoil()
+    {
+        transform.DOMoveX(transform.position.x - 0.5f, 0.5f);
     }
 
     private void PlayClip(AudioClip clip)

@@ -13,6 +13,6 @@ public class EnemyController
 
     public void Dispose()
     {
-        _inputController.OnShoot -= _view.Dead;
+       // _inputController.OnShoot -= _view.Dead;
     }
 }
