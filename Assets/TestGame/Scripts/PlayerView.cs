@@ -52,7 +52,8 @@ public class PlayerView : MonoBehaviour
     }
     private void Update()
     {
-        _player.transform.position += (new Vector3(1, 0, 0) * _speed * Time.deltaTime);
+        transform.position = transform.position + new Vector3(1, 0, 0) * _speed * Time.deltaTime;
+        Debug.Log(_speed);
     }
 
     private void ShowRun()
@@ -65,6 +66,7 @@ public class PlayerView : MonoBehaviour
         _animation.AnimationState.SetAnimation(0, Loose, false);
         PlayClip(_sounds.Loose);
         OnLoose?.Invoke();
+        _speed = 0;
     }
 
     public void ShowShoot()

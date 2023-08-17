@@ -18,7 +18,7 @@ public class EnemyView : MonoBehaviour
 
     private void Update()
     {
-        transform.position += (new Vector3(-1,0,0) * Time.deltaTime * _speed);
+        transform.position += new Vector3(-1,0,0) * Time.deltaTime * _speed;
     }
 
     public void Dead(Vector3 hitPosition)
