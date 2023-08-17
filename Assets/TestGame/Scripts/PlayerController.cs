@@ -6,17 +6,17 @@ public class PlayerController
 {
     private const string Shoot = "shoot";
     private PlayerView _view;
-    private InputController _inputController;
-    public PlayerController(PlayerView view, InputController inputController)
+    private ShootHandler _shootHandler;
+    public PlayerController(PlayerView view, ShootHandler shootHandler)
     {
         _view = view;
-        _inputController = inputController;
-        _inputController.OnShoot += _view.Shoot;
+        _shootHandler = shootHandler;
+        _shootHandler.OnShoot += _view.Shoot;
     }
 
     public void Dispose()
     {
-        _inputController.OnShoot -= _view.Shoot;
+        _shootHandler.OnShoot -= _view.Shoot;
     }
 
 }

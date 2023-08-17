@@ -1,17 +1,15 @@
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CanvasController : MonoBehaviour
 {
-    //[SerializeField]
-    //private GameObject _finScreen;
 
-    //[SerializeField]
-    //private GameObject _gameOverScreen;
-
-    //[SerializeField]
-    //private Button _restartButton;
+    [SerializeField]
+    private Button _restartButton;
+    [SerializeField]
+    private GameObject _restartButtonObject;
 
     [SerializeField]
     private TextMeshProUGUI _text;
@@ -21,34 +19,30 @@ public class CanvasController : MonoBehaviour
     public void Initialize(PlayerView playerView)
     {
         _playerView = playerView;
-        //_playerView.OnFinish += ShowFin;
-        //_playerView.OnLoose += ShowGameOver;
-        // _restartButton.onClick.AddListener(Restart);
-        _text.text = "Game Over";
+        _playerView.OnFinish += ShowFin;
+        _playerView.OnLoose += ShowGameOver;
+        _restartButton.onClick.AddListener(Restart);
     }
 
     private void ShowFin()
     {
-        //_finScreen.SetActive(true);
+        _text.text = "Well Done";
     }
 
     private void ShowGameOver() 
     {
-        //_gameOverScreen.SetActive(true);
+        _text.text = "Game Over";
+        _restartButtonObject.SetActive(true);
     }
     private void Restart()
     {
-
-    }
-    private void Update()
-    {
-        
+        SceneManager.LoadScene(0);
     }
 
     private void OnDestroy()
     {
         _playerView.OnFinish -= ShowFin;
         _playerView.OnLoose -= ShowGameOver;
-        //_restartButton.onClick.RemoveListener(Restart);
+        _restartButton.onClick.RemoveListener(Restart);
     }
 }

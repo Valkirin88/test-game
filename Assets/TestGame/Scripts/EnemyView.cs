@@ -20,7 +20,6 @@ public class EnemyView : MonoBehaviour
 
     public void Dead(Vector3 hitPosition)
     {
-        Debug.Log(hitPosition);
         StartCoroutine(Hit(hitPosition));
     }
 
