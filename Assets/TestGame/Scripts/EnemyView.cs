@@ -11,10 +11,7 @@ public class EnemyView : MonoBehaviour
     [SerializeField]
     private SoundsData _sound;
     [SerializeField]
-    private GameObject _deathObject;
-
-    [SerializeField]
-    private Transform _hitTransform;
+    private GameObject _deathEffectPrefab;
 
     private void Update()
     {
@@ -24,14 +21,15 @@ public class EnemyView : MonoBehaviour
     public void Dead(Vector3 hitPosition)
     {
         Debug.Log(hitPosition);
-        _hitTransform.position = hitPosition;
-        StartCoroutine(Hit());
+        StartCoroutine(Hit(hitPosition));
     }
 
-    private IEnumerator Hit()
+    private IEnumerator Hit(Vector3 hitPosition)
     {
         yield return new WaitForSeconds(0.6f);
-        Instantiate(_deathObject, _hitTransform);
+        GameObject deathEffect = Instantiate(_deathEffectPrefab);
+        deathEffect.transform.position = hitPosition;
+        Destroy(deathEffect,0.3f);
         Destroy(gameObject, 0.3f);
     }
 }

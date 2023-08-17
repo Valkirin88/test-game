@@ -14,7 +14,7 @@ public class InputController
                 if (hit.collider.gameObject.GetComponent<EnemyView>())
                 {
                     OnShoot?.Invoke();
-                    hit.collider.gameObject.GetComponent<EnemyView>().Dead(Input.mousePosition);
+                    hit.collider.gameObject.GetComponent<EnemyView>().Dead(hit.point);
                 }
         }
     }

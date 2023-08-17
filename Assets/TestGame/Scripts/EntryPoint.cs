@@ -7,13 +7,13 @@ public class EntryPoint : MonoBehaviour
     [SerializeField]
     private EnemyView[] _enemyViews;
     [SerializeField]
-    private Canvas _canvas;
+    private CanvasController _canvas;
 
     private PlayerController _playerController;
     private InputController _inputController;
     private EnemyController[] _enemyControllers;
     
-    private void Awake()
+    private void Start()
     {
         _inputController = new InputController();
         _playerController = new PlayerController(_playerView, _inputController);

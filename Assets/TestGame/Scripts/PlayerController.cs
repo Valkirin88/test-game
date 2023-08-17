@@ -11,12 +11,12 @@ public class PlayerController
     {
         _view = view;
         _inputController = inputController;
-        _inputController.OnShoot += _view.ShowShoot;
+        _inputController.OnShoot += _view.Shoot;
     }
 
     public void Dispose()
     {
-        _inputController.OnShoot -= _view.ShowShoot;
+        _inputController.OnShoot -= _view.Shoot;
     }
 
 }
