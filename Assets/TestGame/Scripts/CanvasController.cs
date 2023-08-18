@@ -8,7 +8,11 @@ public class CanvasController : MonoBehaviour
     [SerializeField]
     private Button _restartButton;
     [SerializeField]
+    private Button _mainMenuButton;
+    [SerializeField]
     private GameObject _restartButtonObject;
+    [SerializeField]
+    private GameObject _mainMenuButtonObject;
     [SerializeField]
     private TextMeshProUGUI _text;
 
@@ -20,6 +24,7 @@ public class CanvasController : MonoBehaviour
         _playerView.OnWin += ShowFin;
         _playerView.OnLoose += ShowGameOver;
         _restartButton.onClick.AddListener(Restart);
+        _mainMenuButton.onClick.AddListener(ShowMainMenu);
     }
 
     private void ShowFin()
@@ -27,14 +32,21 @@ public class CanvasController : MonoBehaviour
         _text.text = "Well Done";
         Time.timeScale = 0;
         _restartButtonObject.SetActive(true);
+        _mainMenuButtonObject.SetActive(true);
     }
 
     private void ShowGameOver() 
     {
         _text.text = "Game Over";
         _restartButtonObject.SetActive(true);
+        _mainMenuButtonObject.SetActive(true);
     }
     private void Restart()
+    {
+        SceneManager.LoadScene(1);
+        Time.timeScale = 1;
+    }
+    private void ShowMainMenu()
     {
         SceneManager.LoadScene(0);
         Time.timeScale = 1;
@@ -45,5 +57,6 @@ public class CanvasController : MonoBehaviour
         _playerView.OnWin -= ShowFin;
         _playerView.OnLoose -= ShowGameOver;
         _restartButton.onClick.RemoveListener(Restart);
+        _mainMenuButton.onClick.RemoveListener(ShowMainMenu);
     }
 }
