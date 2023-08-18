@@ -11,8 +11,7 @@ public class ShootHandler
 
     private GameObject _bulletPrefab;
     private PlayerView _playerView;
-    private bool _isReadyForShoot;
-    
+    private bool _isReadyForShoot;    
     private float _rechargeTime = 1f;
 
     public ShootHandler(GameObject bulletPrefab, PlayerView playerView)

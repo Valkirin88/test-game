@@ -12,12 +12,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5102827486026757009, guid: f8ab3a4fc2d013a45b3650d7fc88f7d0, type: 3}
+      propertyPath: _animationName
+      value: angry
+      objectReference: {fileID: 0}
+    - target: {fileID: 5102827486026757009, guid: f8ab3a4fc2d013a45b3650d7fc88f7d0, type: 3}
       propertyPath: initialSkinName
       value: blue
       objectReference: {fileID: 0}
     - target: {fileID: 5102827486808413574, guid: f8ab3a4fc2d013a45b3650d7fc88f7d0, type: 3}
       propertyPath: m_Name
-      value: Enemy (1)
+      value: Enemy (1) Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5102827486808413575, guid: f8ab3a4fc2d013a45b3650d7fc88f7d0, type: 3}
       propertyPath: m_RootOrder
@@ -65,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5725421474604689064, guid: f8ab3a4fc2d013a45b3650d7fc88f7d0, type: 3}
       propertyPath: _speed
-      value: 0.2
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8ab3a4fc2d013a45b3650d7fc88f7d0, type: 3}

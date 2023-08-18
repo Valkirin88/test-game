@@ -10,16 +10,20 @@ public class EntryPoint : MonoBehaviour
     private CanvasController _canvas;
     [SerializeField]
     private GameObject _bulletPrefab;
+    [SerializeField]
+    private SoundsData _soundData;
 
     private PlayerController _playerController;
     private InputController _inputController;
     private ShootHandler _shootHandler;
+    private AudioController _audioController;
     
     private void Start()
     {
         _shootHandler = new ShootHandler(_bulletPrefab, _playerView);
         _inputController = new InputController(_shootHandler);
         _playerController = new PlayerController(_playerView, _shootHandler);
+        _audioController = new AudioController(_playerView, _soundData, _shootHandler);
         Initialization();
     }
 
@@ -38,5 +42,6 @@ public class EntryPoint : MonoBehaviour
     private void OnDestroy()
     {
         _playerController.Dispose();
+        _audioController.Dispose();
     }
 }

@@ -10,28 +10,18 @@ public class PlayerView : MonoBehaviour
     private const string ShootAnimationName = "shoot";
 
     public Action OnLoose;
-    public Action OnFinish;
+    public Action OnWin;
 
     [SerializeField]
     private GameObject _player;
-
     [SerializeField]
     private SkeletonAnimation _animation;
-
     [SerializeField]
     private float _speed = 1f;
-
     [SerializeField]
     private Transform _gunTransform;
-
     [SerializeField]
     private GameObject _explosionPrefab;
-
-    [Header("Audio")]
-    [SerializeField]
-    private AudioSource _audioSource;
-    [SerializeField]
-    private SoundsData _sounds;
 
     private bool _isAlive;
 
@@ -55,26 +45,24 @@ public class PlayerView : MonoBehaviour
             }
             if (collision.GetComponent<Finish>())
             {
-                Finish();
+                Win();
             }
         }
     }
     private void Update()
     {
-        transform.position = transform.position + new Vector3(1, 0, 0) * _speed * Time.deltaTime;
-        
+        transform.position = transform.position + _speed * Time.deltaTime * new Vector3(1, 0, 0);
     }
 
     private void Run()
     {
         _animation.AnimationState.SetAnimation(0, RunAnimationName, true);
-        
     }
     public void Loose()
     {
         _isAlive = false;
+        _animation.ClearState();
         _animation.AnimationState.SetAnimation(0, LooseAnimationName, false);
-        PlayClip(_sounds.Loose);
         OnLoose?.Invoke();
         _speed = 0;
     }
@@ -85,7 +73,6 @@ public class PlayerView : MonoBehaviour
         {
             _animation.AnimationState.SetAnimation(1, ShootAnimationName, false);
             _animation.AnimationState.AddAnimation(1, RunAnimationName, true, 1);
-            PlayClip(_sounds.Shoot);
             GameObject explosionEffect = Instantiate(_explosionPrefab, GunTransform);
             Destroy(explosionEffect, 2);
             Recoil();
@@ -96,16 +83,8 @@ public class PlayerView : MonoBehaviour
     {
         transform.DOMoveX(transform.position.x - 0.5f, 0.5f);
     }
-
-    private void PlayClip(AudioClip clip)
+    private void Win()
     {
-        _audioSource.clip = clip;
-        _audioSource.Play();
+        OnWin?.Invoke();
     }
-
-    private void Finish()
-    {
-        OnFinish?.Invoke();
-    }
-
 }

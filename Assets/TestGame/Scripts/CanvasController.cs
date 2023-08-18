@@ -5,12 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class CanvasController : MonoBehaviour
 {
-
     [SerializeField]
     private Button _restartButton;
     [SerializeField]
     private GameObject _restartButtonObject;
-
     [SerializeField]
     private TextMeshProUGUI _text;
 
@@ -19,7 +17,7 @@ public class CanvasController : MonoBehaviour
     public void Initialize(PlayerView playerView)
     {
         _playerView = playerView;
-        _playerView.OnFinish += ShowFin;
+        _playerView.OnWin += ShowFin;
         _playerView.OnLoose += ShowGameOver;
         _restartButton.onClick.AddListener(Restart);
     }
@@ -44,7 +42,7 @@ public class CanvasController : MonoBehaviour
 
     private void OnDestroy()
     {
-        _playerView.OnFinish -= ShowFin;
+        _playerView.OnWin -= ShowFin;
         _playerView.OnLoose -= ShowGameOver;
         _restartButton.onClick.RemoveListener(Restart);
     }

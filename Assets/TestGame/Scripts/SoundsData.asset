@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: SoundsData
   m_EditorClassIdentifier: 
   _shoot: {fileID: 8300000, guid: 578e99a2b68e1bd468573f4fe2cbd7fc, type: 3}
-  _loose: {fileID: 0}
+  _loose: {fileID: 8300000, guid: 9d33d842cff58454abc5676bab4c0e4e, type: 3}
+  _win: {fileID: 8300000, guid: 0f88bef2ab2a85e4482bec7211f099d4, type: 3}
