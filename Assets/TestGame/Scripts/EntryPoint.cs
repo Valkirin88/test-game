@@ -26,6 +26,7 @@ public class EntryPoint : MonoBehaviour
     private void Update()
     {
         _inputController.Update();
+        _shootHandler.Update();
     }
 
     private void Initialization()

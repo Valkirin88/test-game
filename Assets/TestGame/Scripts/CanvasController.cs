@@ -27,6 +27,8 @@ public class CanvasController : MonoBehaviour
     private void ShowFin()
     {
         _text.text = "Well Done";
+        Time.timeScale = 0;
+        _restartButtonObject.SetActive(true);
     }
 
     private void ShowGameOver() 
@@ -37,6 +39,7 @@ public class CanvasController : MonoBehaviour
     private void Restart()
     {
         SceneManager.LoadScene(0);
+        Time.timeScale = 1;
     }
 
     private void OnDestroy()

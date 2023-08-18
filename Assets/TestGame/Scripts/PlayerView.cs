@@ -35,7 +35,9 @@ public class PlayerView : MonoBehaviour
 
     private bool _isAlive;
 
-    public Transform GunTransform => _gunTransform; 
+    public Transform GunTransform => _gunTransform;
+
+    public bool IsAlive  => _isAlive; 
 
     public void Initialize()
     {
@@ -45,7 +47,7 @@ public class PlayerView : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (_isAlive)
+        if (IsAlive)
         {
             if (collision.GetComponent<EnemyView>())
             {
@@ -79,7 +81,7 @@ public class PlayerView : MonoBehaviour
 
     public void Shoot()
     {
-        if (_isAlive)
+        if (IsAlive)
         {
             _animation.AnimationState.SetAnimation(1, ShootAnimationName, false);
             _animation.AnimationState.AddAnimation(1, RunAnimationName, true, 1);

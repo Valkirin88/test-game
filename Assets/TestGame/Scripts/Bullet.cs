@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
-        Destroy(gameObject,5);
+        Destroy(gameObject,3);
         _direction = Target - transform.position;
         _direction.Normalize();
     }
