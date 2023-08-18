@@ -1,6 +1,5 @@
 using UnityEngine;
 using Spine.Unity;
-using System.Collections;
 
 public class EnemyView : MonoBehaviour
 {
@@ -18,17 +17,17 @@ public class EnemyView : MonoBehaviour
         transform.position += new Vector3(-1,0,0) * Time.deltaTime * _speed;
     }
 
-    public void Dead(Vector3 hitPosition)
+    private void OnTriggerEnter(Collider other)
     {
-        StartCoroutine(Hit(hitPosition));
+        if (other.GetComponent<Bullet>())
+            Dead(other.transform.position);
     }
 
-    private IEnumerator Hit(Vector3 hitPosition)
+    public void Dead(Vector3 hitPosition)
     {
-        yield return new WaitForSeconds(0.6f);
         GameObject deathEffect = Instantiate(_deathEffectPrefab);
         deathEffect.transform.position = hitPosition;
-        Destroy(deathEffect,0.3f);
-        Destroy(gameObject, 0.3f);
+        Destroy(deathEffect, 0.3f);
+        Destroy(gameObject);
     }
 }

@@ -8,6 +8,8 @@ public class EntryPoint : MonoBehaviour
     private EnemyView[] _enemyViews;
     [SerializeField]
     private CanvasController _canvas;
+    [SerializeField]
+    private GameObject _bulletPrefab;
 
     private PlayerController _playerController;
     private InputController _inputController;
@@ -15,7 +17,7 @@ public class EntryPoint : MonoBehaviour
     
     private void Start()
     {
-        _shootHandler = new ShootHandler();
+        _shootHandler = new ShootHandler(_bulletPrefab, _playerView);
         _inputController = new InputController(_shootHandler);
         _playerController = new PlayerController(_playerView, _shootHandler);
         Initialization();

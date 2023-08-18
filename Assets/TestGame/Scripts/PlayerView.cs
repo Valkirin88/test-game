@@ -35,6 +35,8 @@ public class PlayerView : MonoBehaviour
 
     private bool _isAlive;
 
+    public Transform GunTransform => _gunTransform; 
+
     public void Initialize()
     {
         _isAlive = true;
@@ -77,12 +79,15 @@ public class PlayerView : MonoBehaviour
 
     public void Shoot()
     {
-        _animation.AnimationState.SetAnimation(1, ShootAnimationName, false);
-        _animation.AnimationState.AddAnimation(1, RunAnimationName, true, 1);
-        PlayClip(_sounds.Shoot);
-        GameObject explosionEffect = Instantiate(_explosionPrefab, _gunTransform);
-        Destroy(explosionEffect, 2);
-        Recoil();
+        if (_isAlive)
+        {
+            _animation.AnimationState.SetAnimation(1, ShootAnimationName, false);
+            _animation.AnimationState.AddAnimation(1, RunAnimationName, true, 1);
+            PlayClip(_sounds.Shoot);
+            GameObject explosionEffect = Instantiate(_explosionPrefab, GunTransform);
+            Destroy(explosionEffect, 2);
+            Recoil();
+        }
     }
 
     private void Recoil()

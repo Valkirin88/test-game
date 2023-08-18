@@ -4,6 +4,15 @@ using System;
 public class ShootHandler
 {
     public Action OnShoot;
+
+    private GameObject _bulletPrefab;
+    private PlayerView _playerView;
+
+    public ShootHandler(GameObject bulletPrefab, PlayerView playerView)
+    {
+        _bulletPrefab = bulletPrefab;
+        _playerView = playerView;
+    }
     public void CheckHit()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -12,7 +21,8 @@ public class ShootHandler
             if (hit.collider.gameObject.GetComponent<EnemyView>())
             {
                 OnShoot?.Invoke();
-                hit.collider.gameObject.GetComponent<EnemyView>().Dead(hit.point);
+                GameObject bullet = UnityEngine.Object.Instantiate(_bulletPrefab, _playerView.GunTransform.position, Quaternion.identity);
+                bullet.GetComponent<Bullet>().Target = hit.point;
             }
     }
 }
