@@ -14,7 +14,7 @@ public class EnemyView : MonoBehaviour
 
     private void Update()
     {
-        transform.position += new Vector3(-1,0,0) * Time.deltaTime * _speed;
+        transform.position += Time.deltaTime * _speed * new Vector3(-1,0,0);
     }
 
     private void OnTriggerEnter(Collider other)

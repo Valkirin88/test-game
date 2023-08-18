@@ -4,7 +4,6 @@ public class Bullet : MonoBehaviour
 {
     [HideInInspector]
     public Vector3 Target;
-
     [SerializeField]
     private float _speed = 10;
 
@@ -15,6 +14,7 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject,3);
         _direction = Target - transform.position;
         _direction.Normalize();
+        transform.Rotate(0,0,90);
     }
     private void Update()
     {
