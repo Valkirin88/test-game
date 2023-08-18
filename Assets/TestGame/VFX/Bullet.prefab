@@ -9669,7 +9669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {x: 0, y: 0, z: 0}
-  _speed: 0.05
+  _speed: 10
 --- !u!54 &-3372232061695706385
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -8,14 +8,17 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private float _speed = 10;
 
+    private Vector3 _direction;
 
     private void Start()
     {
         Destroy(gameObject,5);
+        _direction = Target - transform.position;
+        _direction.Normalize();
     }
     private void Update()
     {
-        transform.position +=  new Vector3(Target.x, Target.y, Target.z) * Time.deltaTime * _speed;
+        transform.position += Time.deltaTime * _speed * _direction;
     }
 
     private void OnTriggerEnter(Collider other)
